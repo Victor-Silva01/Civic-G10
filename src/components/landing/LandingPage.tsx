@@ -4,7 +4,6 @@ import { Specs } from "./Specs";
 import { Interior } from "./Interior";
 import { DesignShowcase } from "./DesignShowcase";
 import { CTA } from "./CTA";
-import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { ScrollProgress } from "./ScrollProgress";
 import { FloatingWhatsApp } from "./FloatingWhatsApp";
@@ -16,7 +15,6 @@ export function LandingPage() {
     <TestDriveProvider>
       <ScrollProgress />
       <main className="relative min-h-screen bg-background text-foreground antialiased overflow-hidden">
-        <Nav />
         <Hero />
         <Parallax />
         <Specs />
