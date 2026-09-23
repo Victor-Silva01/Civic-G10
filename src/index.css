@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.875rem;
+
+  /* Tema */
+  --background: #0b1220;
+  --foreground: #f7f8fb;
+
+  --card: #111a2b;
+  --card-foreground: #f7f8fb;
+
+  --popover: #111a2b;
+  --popover-foreground: #f7f8fb;
+
+  /* Cores principais */
+  --primary: #ff6b6b;
+  --primary-foreground: #ffffff;
+
+  --secondary: #1f2940;
+  --secondary-foreground: #f1f5f9;
+
+  --accent: #ff9f7a;
+  --accent-foreground: #081020;
+
+  --muted: #98a0b0;
+  --muted-foreground: #cbd5e1;
+
+  --destructive: #ff6b6b;
+  --destructive-foreground: #ffffff;
+
+  /* Bordas e campos */
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: rgba(255, 107, 107, 0.28);
+
+  /* Efeitos */
+  --glow: rgba(255, 107, 107, 0.14);
+  --glow-secondary: rgba(255, 159, 122, 0.08);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Poppins", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  button, input, textarea, select { font: inherit; }
+  button { cursor: pointer; }
+
+  ::selection { background: var(--primary); color: #fff; }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--foreground), var(--primary));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .text-gradient-neon {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .glow-primary { box-shadow: 0 0 40px -8px var(--glow); }
+  .glow-text { text-shadow: 0 0 30px var(--glow); }
+
+  .grain { position: relative; isolation: isolate; }
+  .grain::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0);
+    background-size: 4px 4px; pointer-events: none;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Botão vermelho intenso e opaco */
+  .btn-red-solid {
+    background-color: #ff3333 !important;
+    color: #ffffff !important;
+    border: none !important;
+    opacity: 1 !important;
+  }
+
+  .btn-red-solid:hover {
+    background-color: #ff1a1a !important;
+    opacity: 1 !important;
+  }
+
+  /* Formulário de agendamento - estilo proposto */
+  .test-drive-form {
+    width: min(100% - 32px, 480px);
+    margin-inline: auto;
+    padding: clamp(24px, 5vw, 36px);
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 107, 107, 0.06);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  }
+
+  .test-drive-form h2, .test-drive-form h3 {
+    margin: 0 0 10px; color: var(--foreground);
+    font-size: clamp(1.8rem, 5vw, 2.2rem); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em;
+  }
+
+  .test-drive-form p { color: var(--muted-foreground); line-height: 1.6; }
+
+  .test-drive-form .form-group { display:flex; flex-direction:column; gap:8px; margin-top:18px; }
+  .test-drive-form label { color: #e2e8f0; font-size:0.85rem; font-weight:500; }
+
+  .test-drive-form input, .test-drive-form select, .test-drive-form textarea {
+    width:100%; min-height:52px; padding:14px 16px; color:#f8fafc; background:#111827;
+    border:1px solid #243243; border-radius:12px; outline:none; transition: border-color .18s ease, box-shadow .18s ease;
+  }
+
+  .test-drive-form input::placeholder, .test-drive-form textarea::placeholder { color:#94a3b8; opacity:1; }
+
+  .test-drive-form input:focus, .test-drive-form select:focus, .test-drive-form textarea:focus {
+    border-color: var(--primary); background:#172638; box-shadow: 0 0 0 3px var(--ring);
+  }
+
+  .test-drive-form .confirm-btn {
+    width:100%; min-height:54px; margin-top:24px; padding:14px 20px; border:0; border-radius:12px;
+    background: var(--primary); color:#fff; font-weight:600; font-size:1rem; transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .test-drive-form .confirm-btn:hover { background:#ff8585; box-shadow:0 8px 28px rgba(255,107,107,0.18); transform: translateY(-2px); }
+
+  @media (max-width:640px) {
+    .test-drive-form { width: calc(100% - 32px); padding: 20px; border-radius:20px; }
+    .test-drive-form .confirm-btn { margin-top: 20px; }
+  }
+}
